@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any
 
 class Bridge:
     """PyWebView JS API Bridge: 暴露给前端调用的方法。"""
@@ -6,29 +6,29 @@ class Bridge:
     def ping(self) -> str:
         return "pong"
 
-    def ingest_data(self, file_path: str, options: Dict[str, Any] | None = None) -> Dict[str, Any]:
+    def ingest_data(self, file_path: str, options: dict[str, Any] | None = None) -> dict[str, Any]:
         return {"ok": True, "file_path": file_path, "options": options or {}}
 
-    def get_analysis(self, date_range: Dict[str, str]) -> Dict[str, Any]:
+    def get_analysis(self, date_range: dict[str, str]) -> dict[str, Any]:
         return {
             "emotion": {"labels": ["2025-01-01", "2025-01-02"], "values": [0.2, 0.6]},
             "frequency": {"labels": ["Mon", "Tue"], "values": [12, 8]},
             "wordcloud": [{"text": "聊天", "weight": 10}, {"text": "建议", "weight": 6}],
         }
 
-    def generate_suggestion(self, intent: str, context: Dict[str, Any]) -> Dict[str, Any]:
+    def generate_suggestion(self, intent: str, context: dict[str, Any]) -> dict[str, Any]:
         return {
             "intent": intent,
             "summary": "示例建议：保持耐心与共情表达。",
             "speech": ["我理解你的感受，我们一起看怎么改善。"],
         }
 
-    def get_settings(self) -> Dict[str, Any]:
+    def get_settings(self) -> dict[str, Any]:
         return {
             "model": "local",
             "interval_minutes": 30,
             "range_days": 7,
         }
 
-    def set_settings(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+    def set_settings(self, payload: dict[str, Any]) -> dict[str, Any]:
         return {"saved": True, "payload": payload}

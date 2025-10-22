@@ -14,23 +14,7 @@ def main():
     bridge = Bridge()
 
     if dist_index:
-        window = webview.create_window('ChatMind', url=dist_index, js_api=bridge)
-    else:
-        html = """
-        <!doctype html>
-        <html>
-          <head><meta charset='utf-8'><title>ChatMind</title></head>
-          <body>
-            <div style='font-family: system-ui; padding: 24px;'>
-              <h1>ChatMind</h1>
-              <p>前端构建产物未找到，请先在 frontend 目录执行构建。</p>
-              <p>命令：npm i && npm run build</p>
-            </div>
-          </body>
-        </html>
-        """
-        window = webview.create_window('ChatMind', html=html, js_api=bridge)
-
+        window = webview.create_window('ChatMind', url=dist_index, js_api=bridge,frameless= True)
     webview.start()
 
 
