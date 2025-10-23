@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "vue": "^3.4.0",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "echarts": "^5.5.0"
   },
   "devDependencies": {
     "vite": "^5.0.0",
