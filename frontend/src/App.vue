@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <aside class="sidebar">
-      <h2 class="brand">ChatMind</h2>
+      <h2 class="brand">Chrono_Trace</h2>
       <nav class="menu">
         <router-link to="/">首页</router-link>
         <router-link to="/analytics">历史数据</router-link>

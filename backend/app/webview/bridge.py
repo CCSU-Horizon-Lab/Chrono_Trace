@@ -32,3 +32,4 @@ class Bridge:
 
     def set_settings(self, payload: dict[str, Any]) -> dict[str, Any]:
         return {"saved": True, "payload": payload}
+
