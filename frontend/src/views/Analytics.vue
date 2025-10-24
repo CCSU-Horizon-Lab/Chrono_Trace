@@ -117,34 +117,27 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.analytics-page {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 16px;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 16px;
-}
-.col:first-child { grid-column: span 7; }
-.col:last-child { grid-column: span 5; }
-@media (max-width: 1200px) {
-  .col:first-child, .col:last-child { grid-column: span 12; }
-}
+.analytics-page { display: flex; flex-direction: column; gap: 16px; }
+.page-title h1 { margin: 0 0 8px; color: var(--ct-color-primary); }
+.grid { display: grid; grid-template-columns: 1fr 360px; gap: 16px; }
+.left, .right, .col { display: flex; flex-direction: column; gap: 16px; }
+
 .card {
   background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
-.card-header { padding: 12px 16px; border-bottom: 1px solid #eef0f3; }
-.card-header h2 { margin: 0; font-size: 16px; font-weight: 600; }
-.card-body { padding: 12px 16px; min-height: 280px; }
-.skeleton { color: #6b7280; }
-.error { color: #ef4444; display: flex; align-items: center; gap: 8px; }
+.card-header, .card-hd { padding: 12px 14px; font-weight: 600; color: var(--ct-color-primary); border-bottom: 1px solid rgba(0,0,0,0.06); }
+.card-body, .card-bd { padding: 14px; min-height: 140px; }
+.skeleton { color: #888; }
+.error { color: #b00020; background: #fde7eb; margin: 8px 14px 14px; padding: 8px 10px; border-radius: 8px; font-size: 13px; }
 .btn { padding: 6px 10px; border: 1px solid #e5e7eb; border-radius: 8px; background: #f9fafb; cursor: pointer; }
-.bottom { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-.bottom :deep(.subject-card) { grid-column: span 12; }
+
+.bottom { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.bottom :deep(.subject-card) { grid-column: span 1; }
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: 1fr; }
+}
 </style>
