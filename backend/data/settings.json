@@ -1,0 +1,12 @@
+{
+  "model": "local",
+  "api_token": "",
+  "interval_minutes": 15,
+  "batch_size": 100,
+  "realtime_enabled": true,
+  "wechat_use_custom_path": true,
+  "wechat_data_dir": "C:\\Users\\Y7628\\xwechat_files",
+  "wechat_user_wxid": "wxid_qhbqpoufme0q32_9cc7",
+  "wechat_msg_db": "",
+  "wechat_contact_db": ""
+}
