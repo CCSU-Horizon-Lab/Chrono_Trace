@@ -16,7 +16,12 @@
       "Bash(git worktree remove:*)",
       "Bash(git reset:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Skill(frontend-design)",
+      "Skill(frontend-design:*)",
+      "Bash(npm install echarts)",
+      "Bash(npm run dev)"
     ]
   }
 }
