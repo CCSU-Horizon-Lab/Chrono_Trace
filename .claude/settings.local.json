@@ -22,7 +22,8 @@
       "Skill(frontend-design:*)",
       "Bash(npm install echarts)",
       "Bash(npm run dev)",
-      "Bash(git merge:*)"
+      "Bash(git merge:*)",
+      "Bash(git rm:*)"
     ]
   }
 }
