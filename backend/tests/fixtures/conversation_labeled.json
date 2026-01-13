@@ -1,0 +1,1211 @@
+{
+  "meta": {
+    "source_conversation_id": 1773,
+    "total_annotated": 100,
+    "annotator": "ting",
+    "annotated_at": "2026-01-11",
+    "purpose": "验证SnowNLP情感分析准确率"
+  },
+  "annotated_messages": [
+    {
+      "id": 1773,
+      "content": "你国庆",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1774,
+      "content": "什么安排",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1782,
+      "content": "我也有假",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1783,
+      "content": "但不是连续的",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.2,
+        "reason": "结合语境，有点不开心",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1784,
+      "content": "怎么说",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1785,
+      "content": "就是上两天",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1786,
+      "content": "休两天",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1788,
+      "content": "噢噢~",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1789,
+      "content": "我可以在你休的时候来找你",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1790,
+      "content": "可以可以",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.5,
+        "reason": "结合语境，找时间找对方，有点开心",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1791,
+      "content": "我刚下班",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1792,
+      "content": "嗯嗯 我要上课去了",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1793,
+      "content": "可以可以去吧",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1794,
+      "content": "我老师建议我考研",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.1,
+        "reason": "结合后面的流泪表情包，有点不开心",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1795,
+      "content": "可以往上走",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1796,
+      "content": "[流泪][流泪]",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -1.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1797,
+      "content": "那你打算呢",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1799,
+      "content": "就是这样",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1800,
+      "content": "确实可以呀",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.1,
+        "reason": "加有语气词，有点开心",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1801,
+      "content": "可以多学一点 能更往上走一点",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1802,
+      "content": "主要是",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1803,
+      "content": "我考了的话",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1804,
+      "content": "也要赔违约金",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.7,
+        "reason": "要陪违约金，消极",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1805,
+      "content": "我现在不知道是怎么搞的",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.7,
+        "reason": "迷茫，明显消极",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1806,
+      "content": "如果决定好要靠的话",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "纯假设，不包含情绪",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1807,
+      "content": "那我就等于 还得像高考一样紧张一遍",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.7,
+        "reason": "提到紧张，但情绪不是非常强烈",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1809,
+      "content": "嗯嗯 确实",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "只表示赞同，结合语境无情绪",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1810,
+      "content": "不过看你自己吧",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1811,
+      "content": "学医的话 多读书确实会好一点",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1812,
+      "content": "但是要的时间很久",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1813,
+      "content": "以前我班主任就说 学医出来起码得三十多岁",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1814,
+      "content": "对呀",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1815,
+      "content": "所以我很纠结",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.5,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1816,
+      "content": "考研的话",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1817,
+      "content": "明年十月份报名",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1818,
+      "content": "十二月考试",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1819,
+      "content": "唔",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1820,
+      "content": "看你吧",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1822,
+      "content": "老师对我的评价",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1823,
+      "content": "整体表现极佳",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.7,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1824,
+      "content": "哈哈哈哈哈哈",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.8,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1825,
+      "content": "非常不错哈哈哈哈",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.6,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1826,
+      "content": "我老师说",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1827,
+      "content": "主任也特别喜欢我",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.7,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1828,
+      "content": "哈哈哈哈哈",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.8,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1829,
+      "content": "想让我别走了",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1830,
+      "content": "那你能不能一直留在这里呢",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1831,
+      "content": "不可以好像",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.2,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1832,
+      "content": "因为还有很多科室要轮",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1833,
+      "content": "噢噢~",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1834,
+      "content": "嗐 没办法",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1836,
+      "content": "我跟你说",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1837,
+      "content": "姐妹",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1838,
+      "content": "我今天出科",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1839,
+      "content": "老师只给我一个人发信息",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1840,
+      "content": "说带我去吃饭",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.2,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1841,
+      "content": "没gei师姐发信息",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.1,
+        "reason": "结合语境，有点担心",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1843,
+      "content": "是个女老师嘛 还是你之前说的那个？",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1844,
+      "content": "女老师",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1845,
+      "content": "我现在这个科室的老师",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1846,
+      "content": "噢噢~",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1847,
+      "content": "说明非常器重你",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.6,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1851,
+      "content": "哈哈哈哈哈",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.8,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1855,
+      "content": "这家店",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1857,
+      "content": "简直太好吃了",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 1.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1858,
+      "content": "笨萝卜",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1859,
+      "content": "哈哈哈哈 其实我觉得还可以",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.8,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1860,
+      "content": "也算是好吃的店",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.6,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1861,
+      "content": "没错！",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.8,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1862,
+      "content": "我打算过生日的时候",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1863,
+      "content": "就到这里来吃一顿饭",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.2,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1864,
+      "content": "哈哈哈哈哈",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.8,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1865,
+      "content": "长沙县就有一家",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1866,
+      "content": "今天中午我和别人吃的",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1867,
+      "content": "万家丽也有一家来着",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1868,
+      "content": "嗯嗯",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1870,
+      "content": "那我不知道了",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1871,
+      "content": "我之前以为",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1872,
+      "content": "笨萝卜",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1873,
+      "content": "是一个泡菜店",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1874,
+      "content": "原来是个饭店",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1875,
+      "content": "哈哈哈哈我也是",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.6,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1876,
+      "content": "之前殷杰和朋友去吃过",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1877,
+      "content": "然后也带我去了一次",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1878,
+      "content": "可以可以",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.6,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1879,
+      "content": "我觉得确实味道还不错",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.8,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1880,
+      "content": "[呲牙]",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 1.0,
+        "expected_intensity": 0.8,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1881,
+      "content": "嗯嗯",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1882,
+      "content": "我特别的无语我们辅导员",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.8,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1884,
+      "content": "我上午发的信息",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1885,
+      "content": "她不回",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.5,
+        "reason": "结合语境，对方没有回消息不开心",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1886,
+      "content": "而且我这个又不是小事情",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.5,
+        "reason": "结合语境，抱怨",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1887,
+      "content": "她没回就算了",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.4,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1889,
+      "content": "她还发了一个朋友圈",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1892,
+      "content": "六个小时前",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1893,
+      "content": "也就是下午",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1894,
+      "content": "无语死了 有时间编辑朋友圈文字 没时间回我信息？",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.9,
+        "reason": "强烈不满",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1895,
+      "content": "就是就是",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.2,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1896,
+      "content": "这么久才回",
+      "is_sender": 1,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": 0.0,
+        "expected_intensity": 0.0,
+        "reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": 1897,
+      "content": "真的无语死了",
+      "is_sender": 0,
+      "timestamp": 0,
+      "annotation": {
+        "expected_polarity": -1.0,
+        "expected_intensity": -0.8,
+        "reason": "",
+        "notes": ""
+      }
+    }
+  ]
+}
