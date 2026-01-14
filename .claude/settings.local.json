@@ -23,7 +23,10 @@
       "Bash(npm install echarts)",
       "Bash(npm run dev)",
       "Bash(git merge:*)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(python:*)",
+      "Bash(timeout:*)"
     ]
   }
 }
