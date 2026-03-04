@@ -28,7 +28,8 @@
       "Bash(python:*)",
       "Bash(timeout:*)",
       "Bash(git pull:*)",
-      "Bash(git stash:*)"
+      "Bash(git stash:*)",
+      "Bash(git stash push:*)"
     ]
   }
 }
