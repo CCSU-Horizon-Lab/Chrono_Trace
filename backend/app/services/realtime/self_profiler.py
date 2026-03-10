@@ -1,10 +1,9 @@
 """
-联系人画像服务
+用户本体画像分析服务 (Self Profiler)
 
-通过 LLM 总结联系人历史聊天，生成对方画像：
-- 性格标签、聊天风格、兴趣话题、关系总结、沟通注意事项
-- 支持 token 预算制采样（低/中/高/自定义）
-- 模块化收集已有特征数据
+通过 LLM 总结长对话中"我"（is_sender=1）的发言，生成用户本体克隆画像：
+- 打字风格体态、常用口头禅/语气词、双方共有事实记忆、沟通角色
+- 用于在生成回复时反向注入，使得生成的建议具备真实的"用户味"（千人千面）
 - 7 天缓存有效期
 """
 
@@ -39,25 +38,29 @@ TIME_BUCKETS = [
 PROFILE_TTL = 7 * 86400  # 7 天
 
 # 画像生成用 System Prompt
-PROFILE_SYSTEM_PROMPT = """你是一个社交关系分析师。根据提供的聊天数据和统计特征，总结"对方"的信息画像。
+PROFILE_SYSTEM_PROMPT = """你是一个语言风格与行为克隆分析专家。根据提供的聊天记录（其中"我"是 `is_sender=1` 的发送者），提取"我"在这段特定关系中的专属语言画风与共同记忆。
+
+关注点：
+1. **语言风格识别**：我（本用户）喜欢发短句还是连发长段落？标点符号使用习惯（是否完全不加标点？或者喜欢连用波浪号~~~、感叹号!!!）？有什么特定的口头禅或语气词（哈、呢、哦、卧槽、啊这）？
+2. **共有记忆与事实**：在这段聊天中，我透露了哪些关于自己的事实或我和对方共有的经历？（比如：上星期一起看了电影，我养了只猫等）。
+3. **态度与防备心**：在这段关系中，我是什么态度？是热情谄媚、还是极度冷淡敷衍、或是互怼打趣的口吻？
 
 规则：
-1. 仅基于提供的数据进行分析，不要编造细节
-2. 性格标签精炼准确，3-5 个
-3. 注意区分"我"和"对方"的发言
-4. 严格按 JSON 格式输出，不要输出其他内容
+1. 分析对象**仅限我（本用户）**的聊天记录特征。
+2. 绝对不能编造我们没有讨论过的细节。
+3. 严格按 JSON 格式输出，不要输出其他内容，必须确保输出。
 
-输出格式（纯 JSON，无 markdown）：
+输出格式（纯 JSON）：
 {
-  "personality_tags": ["标签1", "标签2", "标签3"],
-  "chat_style": "对方的聊天风格描述（回复速度、消息长度偏好、表情使用等）",
-  "interests": ["兴趣1", "兴趣2"],
-  "relationship_note": "对你们关系状态的一句话总结",
-  "communication_tips": "与此人沟通的注意事项和建议"
+  "typing_style": "我的详细打字排版与语言风格特征（例如：极简直白，从不打标点，喜欢用'哈哈'垫底）",
+  "frequent_catchphrases": ["常用词或语气词1", "常用词或语气词2"],
+  "shared_memories": ["共同经历或讨论的事实1", "透露的个人事实2"],
+  "attitude_and_role": "在这段特定关系中我扮演的角色与沟通态度（如：冷淡/敷衍/热情讨好/爹味说教等）",
+  "do_and_donts": "如果让你来完全模仿我说话，必须做的事和绝对不能做的事"
 }"""
 
 
-class ContactProfiler:
+class SelfProfiler:
     """联系人画像服务"""
 
     def __init__(self, timeout: int = 120):
@@ -84,7 +87,7 @@ class ContactProfiler:
 
             cursor = conn.execute(
                 'SELECT profile_json, created_at, expires_at '
-                'FROM contact_profiles WHERE display_name = ?',
+                'FROM self_profiles WHERE display_name = ?',
                 (display_name,)
             )
             row = cursor.fetchone()
@@ -99,7 +102,7 @@ class ContactProfiler:
                 'expired': now > row['expires_at'],
             }
         except Exception as e:
-            _print(f"[ContactProfiler] 查询缓存失败: {e}")
+            _print(f"[SelfProfiler] 查询缓存失败: {e}")
             return None
 
     def estimate_tokens(self, display_name: str, budget_level: str = 'medium', custom_budget: int = 0) -> dict:
@@ -137,7 +140,7 @@ class ContactProfiler:
                 'estimated_total_tokens': budget + 1100,
             }
         except Exception as e:
-            _print(f"[ContactProfiler] 预估 token 失败: {e}")
+            _print(f"[SelfProfiler] 预估 token 失败: {e}")
             return {
                 'conversation_id': None,
                 'message_count': 0,
@@ -165,8 +168,8 @@ class ContactProfiler:
         budget = custom_budget if budget_level == 'custom' and custom_budget > 0 else TOKEN_BUDGETS.get(budget_level, 4000)
 
         _print(f"\n{'='*60}")
-        _print(f"[ContactProfiler] 开始生成画像: {display_name}")
-        _print(f"[ContactProfiler] Token 预算: {budget} ({budget_level})")
+        _print(f"[SelfProfiler] 开始生成画像: {display_name}")
+        _print(f"[SelfProfiler] Token 预算: {budget} ({budget_level})")
         _print(f"{'='*60}")
 
         try:
@@ -174,37 +177,37 @@ class ContactProfiler:
             conn = get_db()
 
             # 1. 查找 conversation_id
-            _print(f"[ContactProfiler] 步骤1: 查找会话...")
+            _print(f"[SelfProfiler] 步骤1: 查找会话...")
             conv = self._find_conversation(conn, display_name)
             if not conv:
-                _print(f"[ContactProfiler] ⚠️ 未找到精确匹配的会话，尝试模糊匹配...")
+                _print(f"[SelfProfiler] ⚠️ 未找到精确匹配的会话，尝试模糊匹配...")
                 conv = self._find_conversation_fuzzy(conn, display_name)
             if not conv:
-                _print(f"[ContactProfiler] ❌ 未找到联系人「{display_name}」的历史聊天记录")
+                _print(f"[SelfProfiler] ❌ 未找到联系人「{display_name}」的历史聊天记录")
                 return {'ok': False, 'error': f'未找到联系人「{display_name}」的历史聊天记录，请先导入微信数据'}
 
             conversation_id = conv['id']
-            _print(f"[ContactProfiler] 找到会话: id={conversation_id}, 消息数={conv['message_count']}")
+            _print(f"[SelfProfiler] 找到会话: id={conversation_id}, 消息数={conv['message_count']}")
 
             # 2. 收集特征数据
             features = self._collect_features(conn, conversation_id)
-            _print(f"[ContactProfiler] 特征数据收集完成: {list(features.keys())}")
+            _print(f"[SelfProfiler] 特征数据收集完成: {list(features.keys())}")
 
             # 3. 采样对话轮次
             sample = self._sample_conversation_turns(conn, conversation_id, budget)
-            _print(f"[ContactProfiler] 采样完成: {len(sample)} 条消息, 约 {self._count_tokens(sample)} tokens")
+            _print(f"[SelfProfiler] 采样完成: {len(sample)} 条消息, 约 {self._count_tokens(sample)} tokens")
 
             # 4. 构造 prompt
             user_prompt = self._build_profile_prompt(display_name, conv, features, sample)
-            _print(f"[ContactProfiler] Prompt 长度: {len(user_prompt)} 字符")
+            _print(f"[SelfProfiler] Prompt 长度: {len(user_prompt)} 字符")
 
             # 5. 调用 LLM，传入预算以动态决定输出额度
             profile_data = self._call_llm(user_prompt, budget)
             if not profile_data:
                 return {'ok': False, 'error': 'LLM 返回解析失败'}
 
-            _print(f"[ContactProfiler] ✅ 画像生成成功!")
-            _print(f"[ContactProfiler] 标签: {profile_data.get('personality_tags', [])}")
+            _print(f"[SelfProfiler] ✅ 画像生成成功!")
+            _print(f"[SelfProfiler] 标签: {profile_data.get('personality_tags', [])}")
 
             # 6. 缓存
             self._save_cache(conn, display_name, conversation_id, profile_data,
@@ -214,7 +217,7 @@ class ContactProfiler:
 
         except Exception as e:
             import traceback
-            _print(f"[ContactProfiler] ❌ 生成画像失败: {e}")
+            _print(f"[SelfProfiler] ❌ 生成画像失败: {e}")
             traceback.print_exc()
             return {'ok': False, 'error': str(e)}
 
@@ -239,14 +242,14 @@ class ContactProfiler:
         )
         row = cursor.fetchone()
         if row:
-            _print(f"[ContactProfiler] ✅ 直接匹配成功: id={row['id']}, "
+            _print(f"[SelfProfiler] ✅ 直接匹配成功: id={row['id']}, "
                    f"username={row['username']}, "
                    f"nickname={row['nickname']}, remark={row['remark']}, "
                    f"messages={row['message_count']}")
             return dict(row)
 
         # 策略2: 通过 contacts 表反查 username(wxid)
-        _print(f"[ContactProfiler] 直接匹配失败，尝试通过 contacts 表反查...")
+        _print(f"[SelfProfiler] 直接匹配失败，尝试通过 contacts 表反查...")
         contact_cursor = conn.execute(
             'SELECT username, nickname, remark FROM contacts '
             'WHERE nickname = ? OR remark = ? '
@@ -255,7 +258,7 @@ class ContactProfiler:
         )
         contacts = contact_cursor.fetchall()
         if contacts:
-            _print(f"[ContactProfiler] 找到 {len(contacts)} 个匹配的联系人: "
+            _print(f"[SelfProfiler] 找到 {len(contacts)} 个匹配的联系人: "
                    f"{[(c['username'], c['nickname'], c['remark']) for c in contacts]}")
             # 用找到的 username(wxid) 去匹配 conversations 表
             for contact in contacts:
@@ -270,12 +273,12 @@ class ContactProfiler:
                 )
                 conv_row = conv_cursor.fetchone()
                 if conv_row:
-                    _print(f"[ContactProfiler] ✅ contacts 反查匹配成功: "
+                    _print(f"[SelfProfiler] ✅ contacts 反查匹配成功: "
                            f"contact={contact['nickname']}({wxid}) → "
                            f"conv_id={conv_row['id']}, messages={conv_row['message_count']}")
                     return dict(conv_row)
 
-        _print(f"[ContactProfiler] ⚠️ 精确匹配全部失败: {display_name}")
+        _print(f"[SelfProfiler] ⚠️ 精确匹配全部失败: {display_name}")
         return None
 
     def _find_conversation_fuzzy(self, conn, display_name: str) -> Optional[dict]:
@@ -298,7 +301,7 @@ class ContactProfiler:
         )
         rows = cursor.fetchall()
         if rows:
-            _print(f"[ContactProfiler] 模糊匹配 conversations 结果: "
+            _print(f"[SelfProfiler] 模糊匹配 conversations 结果: "
                    f"{[(r['nickname'] or r['display_name'], r['message_count']) for r in rows]}")
             return dict(rows[0])
 
@@ -311,7 +314,7 @@ class ContactProfiler:
         )
         contacts = contact_cursor.fetchall()
         if contacts:
-            _print(f"[ContactProfiler] 模糊匹配 contacts 结果: "
+            _print(f"[SelfProfiler] 模糊匹配 contacts 结果: "
                    f"{[(c['nickname'], c['remark']) for c in contacts]}")
             for contact in contacts:
                 wxid = contact['username']
@@ -325,7 +328,7 @@ class ContactProfiler:
                 )
                 conv_row = conv_cursor.fetchone()
                 if conv_row:
-                    _print(f"[ContactProfiler] ✅ 模糊反查匹配成功: "
+                    _print(f"[SelfProfiler] ✅ 模糊反查匹配成功: "
                            f"contact={contact['nickname']}({wxid}) → "
                            f"conv_id={conv_row['id']}, messages={conv_row['message_count']}")
                     return dict(conv_row)
@@ -339,7 +342,7 @@ class ContactProfiler:
         all_convs = [(dict(r)['nickname'] or dict(r)['display_name'],
                        dict(r)['username'], dict(r)['message_count'])
                       for r in cursor2.fetchall()]
-        _print(f"[ContactProfiler] 数据库中的会话列表 (top10): {all_convs}")
+        _print(f"[SelfProfiler] 数据库中的会话列表 (top10): {all_convs}")
         return None
 
     def _collect_features(self, conn, conversation_id: int) -> dict:
@@ -366,7 +369,7 @@ class ContactProfiler:
                     'desc': f"对方主动发起{rate:.0%}的会话" if rate else None,
                 }
         except Exception as e:
-            _print(f"[ContactProfiler] 跳过主动性统计: {e}")
+            _print(f"[SelfProfiler] 跳过主动性统计: {e}")
 
         # 响应时间
         try:
@@ -384,7 +387,7 @@ class ContactProfiler:
                     'max_seconds': round(row['max_rt'], 1),
                 }
         except Exception as e:
-            _print(f"[ContactProfiler] 跳过响应时间: {e}")
+            _print(f"[SelfProfiler] 跳过响应时间: {e}")
 
         # 字数统计
         try:
@@ -400,7 +403,7 @@ class ContactProfiler:
                     'ratio': round(row['char_ratio'], 2),
                 }
         except Exception as e:
-            _print(f"[ContactProfiler] 跳过字数统计: {e}")
+            _print(f"[SelfProfiler] 跳过字数统计: {e}")
 
         # 好感度评分
         try:
@@ -421,7 +424,7 @@ class ContactProfiler:
                     'preference_compatibility': round(row['preference_compatibility_score'], 1),
                 }
         except Exception as e:
-            _print(f"[ContactProfiler] 跳过好感度评分: {e}")
+            _print(f"[SelfProfiler] 跳过好感度评分: {e}")
 
         return features
 
@@ -627,11 +630,11 @@ class ContactProfiler:
             cursor = conn.execute('SELECT * FROM llm_models WHERE is_active = 1 LIMIT 1')
             model_config = cursor.fetchone()
             if not model_config:
-                _print("[ContactProfiler] ❌ 未配置激活的 LLM 模型")
+                _print("[SelfProfiler] ❌ 未配置激活的 LLM 模型")
                 return None
             model_config = dict(model_config)
         except Exception as e:
-            _print(f"[ContactProfiler] 获取模型配置失败: {e}")
+            _print(f"[SelfProfiler] 获取模型配置失败: {e}")
             return None
 
         # 构造请求
@@ -660,13 +663,13 @@ class ContactProfiler:
         data = json.dumps(payload).encode('utf-8')
         req = urllib.request.Request(url, data=data, headers=headers, method='POST')
 
-        _print(f"[ContactProfiler] 📤 POST {url}")
+        _print(f"[SelfProfiler] 📤 POST {url}")
         start = time.time()
         try:
             with urllib.request.urlopen(req, timeout=self.timeout) as resp:
                 body = json.loads(resp.read().decode('utf-8'))
             elapsed = time.time() - start
-            _print(f"[ContactProfiler] 📥 HTTP {resp.status} ({elapsed:.2f}s)")
+            _print(f"[SelfProfiler] 📥 HTTP {resp.status} ({elapsed:.2f}s)")
 
             message_obj = body.get('choices', [{}])[0].get('message', {})
             content = message_obj.get('content', '')
@@ -675,11 +678,11 @@ class ContactProfiler:
             # 部分模型（如 deepseek-reasoner）可能将内容放在 reasoning_content 中，或者由于 max_tokens 限制没能输出 content
             if not content and reasoning:
                 content = reasoning
-                _print("[ContactProfiler] ⚠️ 最终 content 为空，尝试回退使用 reasoning_content")
+                _print("[SelfProfiler] ⚠️ 最终 content 为空，尝试回退使用 reasoning_content")
 
             usage = body.get('usage', {})
             _print(
-                f"[ContactProfiler] 📥 tokens: prompt={usage.get('prompt_tokens', '?')}, "
+                f"[SelfProfiler] 📥 tokens: prompt={usage.get('prompt_tokens', '?')}, "
                 f"completion={usage.get('completion_tokens', '?')}, "
                 f"total={usage.get('total_tokens', '?')}"
             )
@@ -687,10 +690,10 @@ class ContactProfiler:
             return self._parse_profile_json(content)
 
         except urllib.error.URLError as e:
-            _print(f"[ContactProfiler] ❌ 网络错误: {e}")
+            _print(f"[SelfProfiler] ❌ 网络错误: {e}")
             return None
         except Exception as e:
-            _print(f"[ContactProfiler] ❌ LLM 调用失败: {e}")
+            _print(f"[SelfProfiler] ❌ LLM 调用失败: {e}")
             import traceback
             traceback.print_exc()
             return None
@@ -707,14 +710,14 @@ class ContactProfiler:
             data = json.loads(cleaned.strip())
 
             # 校验必要字段
-            required = ['personality_tags', 'chat_style', 'relationship_note']
+            required = ['typing_style', 'attitude_and_role', 'do_and_donts']
             for field in required:
                 if field not in data:
-                    _print(f"[ContactProfiler] ⚠️ 缺少字段: {field}")
+                    _print(f"[SelfProfiler] ⚠️ 缺少字段: {field}")
 
             return data
         except (json.JSONDecodeError, KeyError) as e:
-            _print(f"[ContactProfiler] JSON 解析失败: {e}, 原文: {text[:200]}")
+            _print(f"[SelfProfiler] JSON 解析失败: {e}, 原文: {text[:200]}")
             return None
 
     def _save_cache(
@@ -727,7 +730,7 @@ class ContactProfiler:
 
             now = int(time.time())
             conn.execute(
-                'INSERT OR REPLACE INTO contact_profiles '
+                'INSERT OR REPLACE INTO self_profiles '
                 '(display_name, conversation_id, profile_json, features_snapshot, '
                 'message_sample_count, token_usage, created_at, expires_at) '
                 'VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
@@ -743,14 +746,14 @@ class ContactProfiler:
                 )
             )
             conn.commit()
-            _print(f"[ContactProfiler] 画像已缓存，有效至 {time.strftime('%Y-%m-%d', time.localtime(now + PROFILE_TTL))}")
+            _print(f"[SelfProfiler] 画像已缓存，有效至 {time.strftime('%Y-%m-%d', time.localtime(now + PROFILE_TTL))}")
         except Exception as e:
-            _print(f"[ContactProfiler] ⚠️ 缓存保存失败: {e}")
+            _print(f"[SelfProfiler] ⚠️ 缓存保存失败: {e}")
 
     def _ensure_table(self, conn):
         """确保缓存表存在"""
         conn.execute('''
-            CREATE TABLE IF NOT EXISTS contact_profiles (
+            CREATE TABLE IF NOT EXISTS self_profiles (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 display_name TEXT NOT NULL UNIQUE,
                 conversation_id INTEGER,
