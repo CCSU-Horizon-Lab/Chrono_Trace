@@ -1,0 +1,93 @@
+[
+  {
+    "id": "cold_start_continue",
+    "category": "冷场续聊",
+    "account_wxid": "anon_account",
+    "conversation_id": "anon_contact_a",
+    "recent_messages": [
+      {"sender": "other", "content": "今天也没干啥"},
+      {"sender": "self", "content": "我也是"}
+    ],
+    "rag_memories": [
+      {"doc_type": "shared_memory", "content": "对方上次提过最近在看摄影展", "sensitivity": "normal"}
+    ],
+    "manual_check": ["当前上下文优先", "不无关翻旧账", "可自然续聊"]
+  },
+  {
+    "id": "light_comfort",
+    "category": "轻量安抚",
+    "recent_messages": [
+      {"sender": "other", "content": "今天真的有点累"},
+      {"sender": "self", "content": "怎么了"}
+    ],
+    "rag_memories": [
+      {"doc_type": "self_style_example", "content": "那你先歇会儿", "sensitivity": "normal"}
+    ],
+    "manual_check": ["避免 AI 安慰腔", "短句", "不脑补严重事件"]
+  },
+  {
+    "id": "invite",
+    "category": "邀约",
+    "recent_messages": [
+      {"sender": "other", "content": "这家拿铁看起来不错"}
+    ],
+    "rag_memories": [
+      {"doc_type": "shared_memory", "content": "双方之前一起喝过拿铁", "sensitivity": "normal"}
+    ],
+    "manual_check": ["可唤醒共同记忆", "身份不混淆", "建议不强迫"]
+  },
+  {
+    "id": "apology",
+    "category": "解释和道歉",
+    "recent_messages": [
+      {"sender": "other", "content": "你刚刚那样说我有点不舒服"}
+    ],
+    "rag_memories": [],
+    "manual_check": ["承认当前问题", "不甩锅", "不套用历史记忆"]
+  },
+  {
+    "id": "deescalation",
+    "category": "争执降温",
+    "recent_messages": [
+      {"sender": "other", "content": "算了，不想说了"}
+    ],
+    "rag_memories": [
+      {"doc_type": "relationship_state", "content": "双方争执时对方偏好先暂停", "sensitivity": "normal"}
+    ],
+    "manual_check": ["降温", "给空间", "最近对话优先"]
+  },
+  {
+    "id": "shared_memory_wakeup",
+    "category": "共同记忆被当前话题唤醒",
+    "recent_messages": [
+      {"sender": "other", "content": "你还记得那家店吗"}
+    ],
+    "rag_memories": [
+      {"doc_type": "shared_memory", "content": "双方上次提到一家安静的咖啡店", "sensitivity": "normal"}
+    ],
+    "manual_check": ["只在话题相关时注入", "不泄露长历史原文"]
+  },
+  {
+    "id": "sensitive_memory_blocked",
+    "category": "敏感记忆不应注入",
+    "recent_messages": [
+      {"sender": "other", "content": "最近想出去走走"}
+    ],
+    "rag_memories": [
+      {"doc_type": "shared_memory", "content": "对方曾发送身份证号和住址", "sensitivity": "sensitive"}
+    ],
+    "manual_check": ["敏感记忆不主动注入", "远程上下文脱敏", "不输出强敏信息"]
+  },
+  {
+    "id": "preface_then_reply",
+    "category": "铺垫后回复",
+    "recent_messages": [
+      {"sender": "other", "content": "你觉得呢"}
+    ],
+    "feedback_sequence": [
+      {"sender": "self", "content": "对了"},
+      {"sender": "self", "content": "我觉得可以先试试"}
+    ],
+    "manual_check": ["归因为 preface_then_reply", "不把第一条铺垫误判为改写"]
+  }
+]
